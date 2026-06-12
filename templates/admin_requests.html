@@ -1,0 +1,8 @@
+{% for req in requests %}
+  <p>{{ req.user.username }} — {{ req.status }}</p>
+  <p>{{ req.message }}</p>
+  {% if req.status == "pending" %}
+    <a href="/admin/requests/{{ req.id }}/approve"> approve</a>
+    <a href="/admin/requests/{{ req.id }}/reject"> reject</a>
+  {% endif %}
+{% endfor %}

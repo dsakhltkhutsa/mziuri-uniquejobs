@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %}WeirdJobs — Discover Unusual Careers{% endblock %}
+
+{% block content %}
+<div class="mb-4">
+    <h1 class="page-title">Weird, Cool & Unpopular Jobs</h1>
+    <p class="text-muted">A collection of careers most people don't know exist.</p>
+</div>
+
+<div class="row row-cols-1 row-cols-md-3 g-4">
+    {% for job in jobs %}
+    <div class="col">
+        <div class="card h-100 job-card">
+            <img src="/static/images/{{ job.img }}" class="card-img-top job-img" alt="{{ job.title }}">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-start mb-2">
+                    <span class="badge category-badge">{{ job.category }}</span>
+                    {% if job.is_remote %}
+                    <span class="badge bg-success">Remote</span>
+                    {% endif %}
+                </div>
+                <h5 class="card-title">{{ job.title }}</h5>
+                <p class="card-text text-muted small">{{ job.salary }}</p>
+                <a href="/job/{{ job.id }}" class="btn btn-primary btn-sm mt-auto">See Details</a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

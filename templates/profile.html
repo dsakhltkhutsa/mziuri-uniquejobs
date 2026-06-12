@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ user.username }} — WeirdJobs{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card shadow-sm border-0">
+            <div class="card-body p-4">
+                {% if user.role == "Admin" %}
+                <div class="alert alert-warning text-center">⭐ Admin Account</div>
+                {% endif %}
+
+                <h2 class="page-title text-center mb-4">{{ user.username }}</h2>
+
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item d-flex justify-content-between">
+                        <span class="text-muted">Username</span>
+                        <strong>{{ user.username }}</strong>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between">
+                        <span class="text-muted">Role</span>
+                        <strong>{{ user.role }}</strong>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

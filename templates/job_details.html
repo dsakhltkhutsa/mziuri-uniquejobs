@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ job.title }} — WeirdJobs{% endblock %}
+
+{% block content %}
+<a href="/" class="btn btn-outline-secondary btn-sm mb-4">← Back to all jobs</a>
+
+<div class="row">
+    <div class="col-md-4">
+        <img src="/static/images/{{ job.img }}" class="img-fluid rounded shadow-sm" alt="{{ job.title }}">
+    </div>
+    <div class="col-md-8">
+        <div class="d-flex gap-2 mb-2">
+            <a href="/category/{{ job.category }}" class="badge category-badge text-decoration-none">{{ job.category }}</a>
+            {% if job.is_remote %}
+            <span class="badge bg-success">Remote</span>
+            {% else %}
+            <span class="badge bg-secondary">On-site</span>
+            {% endif %}
+        </div>
+
+        <h1 class="page-title">{{ job.title }}</h1>
+        <p class="text-muted mb-3">{{ job.salary }} / year</p>
+
+        <p class="mb-4">{{ job.description }}</p>
+
+        <div class="d-flex align-items-center gap-2">
+            <strong>Danger Level:</strong>
+            {% if job.danger_level == "High" %}
+                <span class="badge bg-danger">🔴 High</span>
+            {% elif job.danger_level == "Medium" %}
+                <span class="badge bg-warning text-dark">🟡 Medium</span>
+            {% else %}
+                <span class="badge bg-success">🟢 Low</span>
+            {% endif %}
+        </div>
+
+        <hr class="mt-4">
+        <h4>Reviews</h4>
+        {% for review in reviews %}
+        <p class="text-muted">{{ review.text }}</p>
+        {% else %}
+        <p class="text-muted">No reviews yet.</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

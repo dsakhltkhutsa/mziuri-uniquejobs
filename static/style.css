@@ -1,0 +1,39 @@
+
+nav.navbar {
+    background-color: #1a1a2e;
+}
+
+
+.page-title {
+    font-weight: 700;
+    letter-spacing: -0.5px;
+}
+
+
+.job-card {
+    border: none;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.job-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+
+.job-img {
+    height: 200px;
+    object-fit: cover;
+}
+
+
+.category-badge {
+    background-color: #e63946;
+}
+
+
+footer {
+    color: #aaa;
+    border-top: 1px solid #eee;
+}
