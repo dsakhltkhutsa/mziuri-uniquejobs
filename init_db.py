@@ -5,7 +5,6 @@ with app.app_context():
     db.drop_all()
     db.create_all()
 
-    admin = User(username="admin",
-                 password="adminpass",
-                 role="Admin")
+     admin = User(username="admin", role="Admin")
+    admin.set_password("adminpass")
     admin.create()
