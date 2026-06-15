@@ -16,8 +16,8 @@ def home():
 def register():
     form = RegisterForm()
     if form.validate_on_submit():
-        new_user = User(username=form.username.data,
-                        password=form.password.data)
+        new_user = User(username=form.username.data)
+        new_user.set_password(form.password.data)
         new_user.create()
         flash("წარმატებით დარეგისტრირდი")
         return redirect("/")
@@ -29,7 +29,7 @@ def login():
     form = LoginForm()
     if form.validate_on_submit():
         user = User.query.filter(User.username == form.username.data).first()
-        if user:
+        if user and user.check_password(form.password.data):
             login_user(user)
             flash("წარმატებით შეხვედი საიტზე!")
             return redirect("/")
