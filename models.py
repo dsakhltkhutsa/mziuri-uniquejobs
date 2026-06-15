@@ -2,6 +2,8 @@ from sqlalchemy import ForeignKey
 from ext import db, login_manager
 from flask_login import UserMixin
 from datetime import datetime
+from werkzeug.security import generate_password_hash, check_password_hash
+
 
 
 class BaseModel:
@@ -25,6 +27,12 @@ class User(db.Model, BaseModel, UserMixin):
     username = db.Column(db.String())
     password = db.Column(db.String())
     role = db.Column(db.String(), default="Guest")
+
+    def set_password(self, password):
+        self.password = generate_password_hash(password)
+
+    def check_password(self, password):
+        return check_password_hash(self.password, password)
 
 
 @login_manager.user_loader
